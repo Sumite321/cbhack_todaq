@@ -1,14 +1,14 @@
 const axios = require('axios');
 
-async function createIndividualAccount(data) {
-  return Promise((resolve, reject) => {
+function createIndividualAccount(data) {
+  return new Promise((resolve, reject) => {
     axios.post(`${process.env.API_URL}/accounts`, data, {
       headers: {
         'Content-Type': 'application/json',
         'x-api-key': process.env.API_KEY,
       },
     })
-    .then(res => resolve(res.data.data))
+    .then(res => resolve(res.data.data[0].id))
     .catch(error => reject(error));
   });
 }
