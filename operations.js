@@ -43,7 +43,7 @@ async function retrieveIdentity(accountId) {
   const identity = create.createIdentity(accountId, privKey, pubKeyFile, pubKeyFileProof);
   return identity;
 }
-*/
+
 
 
 
