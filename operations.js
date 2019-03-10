@@ -9,47 +9,18 @@ const createFile = require('./helpers/files/createFile');
 const getProof = require('./helpers/files/getProofs');
 
 
-async function initIdentity() {
+async function initIdentity(email, firstname, lastname) {
   const keys = verify.createRSAKeys();
   const privKey = keys.prvKeyObj;
   const pubKey = keys.pubKeyObj;
 
-  var accountData = {
-  type: 'account',
-  data: {
-    attributes: {
-      'account-type': 'individual',
-      'admin-email': 'haael-5@mailinator.com',
-      contact: {
-        email: 'haael-5@mailinator.com',
-        phone: '239482',
-        'last-name': 'Adf',
-        'first-name': 'Feprio',
-        address: {
-          city: 'x<vc',
-          'postal-code': 'sidhf',
-          'province-region': 'wef',
-          'street-address-1': 'sdv',
-          country: 'PL',
-        },
-      },
-    },
-  },
-  };
 
   // accountData = /* ... */;
 
-  //const accountId = await createIndividualAccount(accountData);
-  //console.log(accountId);
-
-
-  const accountId = "dab9c5f2-0a78-4231-8495-eafe1409f53c";
+  const accountId = await createIndividualAccount(accountData);
 
   const pubKeyFile = await createFile(accountId, JSON.stringify(pubKey));
-  console.log(pubKeyFile);
-  const pubKeyFileProof = await getProof(pubKeyFile);
-  console.log(pubKeyFileProof);
-
+  const pubKeyFileProof = await getProof(pubKeyFile)
 
   const identity = create.createIdentity(accountId, privKey, pubKeyFile, pubKeyFileProof);
 
@@ -63,7 +34,7 @@ async function initIdentity() {
 }
 
 
-/*
+
 async function retrieveIdentity(accountId) {
   const privKey = JSON.parse(loadFileFromDisk(accountId + '.key');
   const pubKeyFile = await loadFileFromDisk(accountId + '.pub_file');
@@ -79,8 +50,9 @@ async function retrieveIdentity(accountId) {
 
 
 
-initIdentity().then(identity => console.log(identity));
+//initIdentity().then(identity => console.log(identity));
 
+retrieveIdentity("dab9c5f2-0a78-4231-8495-eafe1409f53c").then(identity => console.log(identity));
 
 
 
