@@ -1,7 +1,7 @@
 const axios = require('axios');
 
-async function createIndividualAccount(data) {
-  return Promise((resolve, reject) => {
+function createIndividualAccount(data) {
+  return new Promise((resolve, reject) => {
     axios.post(`${process.env.API_URL}/accounts`, data, {
       headers: {
         'Content-Type': 'application/json',
