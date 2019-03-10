@@ -13,4 +13,4 @@ function getProofs(id) {
   });
 }
 
-module.exports = getFilesById;
+module.exports = getProofs;
